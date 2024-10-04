@@ -1,0 +1,18 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+     Map<Integer, Integer> hash = new HashMap<>();
+        int majorityCount = nums.length / 2;
+
+        // Populate the HashMap with frequencies of elements
+        for (int num : nums) {
+            hash.put(num, hash.getOrDefault(num, 0) + 1);
+            
+            // Check if the current element is the majority element
+            if (hash.get(num) > majorityCount) {
+                return num;  // Return the element as soon as it becomes a majority
+            }
+        }
+        
+        return -1; 
+    }
+}
