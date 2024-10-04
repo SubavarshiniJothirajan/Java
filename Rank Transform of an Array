@@ -1,0 +1,27 @@
+class Solution {
+    public int[] arrayRankTransform(int[] arr) {
+       int[] sortedArr = arr.clone();
+        Arrays.sort(sortedArr);
+        
+        // Create a map to hold the rank of each unique element
+        HashMap<Integer, Integer> rankMap = new HashMap<>();
+        int rank = 1;
+
+        // Assign ranks to each unique element
+        for (int i = 0; i < sortedArr.length; i++) {
+            // Only assign a rank if it's the first occurrence of the element
+            if (i == 0 || sortedArr[i] != sortedArr[i - 1]) {
+                rankMap.put(sortedArr[i], rank);
+                rank++;
+            }
+        }
+
+        // Create the result array
+        int[] result = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            result[i] = rankMap.get(arr[i]);
+        }
+
+        return result;
+    }
+}
