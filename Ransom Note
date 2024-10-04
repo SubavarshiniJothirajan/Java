@@ -1,0 +1,19 @@
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        char ch[] = new char[26]; // Array to count occurrences of each character
+
+        // Count characters in the magazine
+        for (char c : magazine.toCharArray()) {
+            ch[c - 'a']++;
+        }
+
+        // Check if characters in the ransom note can be constructed
+        for (char c : ransomNote.toCharArray()) {
+            if (ch[c - 'a'] == 0) {
+                return false; // Character not available
+            }
+            ch[c - 'a']--;
+        }
+
+        return true; // Ransom note can be constructed
+    }
